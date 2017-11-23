@@ -1,0 +1,13 @@
+#!/bin/bash
+tracEnabled=$(xinput --list-props 'SynPS/2 Synaptics TouchPad' | awk '/Device Enabled/{print $NF}')
+keyEnabled=$(xinput --list-props 'AT Translated Set 2 keyboard' | awk '/Device Enabled/{print $NF}')
+
+
+if [ $tracEnabled == 1 ] && [ $keyEnabled == 1 ]
+then
+	xinput disable 'SynPS/2 Synaptics TouchPad'
+	xinput disable 'AT Translated Set 2 keyboard'
+else
+	xinput enable 'SynPS/2 Synaptics TouchPad'
+	xinput enable 'AT Translated Set 2 keyboard'
+fi
